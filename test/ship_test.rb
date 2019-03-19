@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/ship'
 require 'pry'
 
-class ShipTest << Minitest::Test
+class ShipTest < Minitest::Test
   # set up variables use for test
   def setup
     @cruiser = Ship.new("Cruiser", 3)
