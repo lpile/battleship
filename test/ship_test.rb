@@ -17,16 +17,51 @@ class ShipTest < Minitest::Test
     assert_equal 3, @cruiser.health
   end
 
-  def test_ship_has_name
+  # test if ship has attributes
+  def test_ship_has_attributes
     assert_equal "Cruiser", @cruiser.name
-  end
-
-  def test_ship_has_length
     assert_equal 3, @cruiser.length
-  end
-
-  def test_ship_has_health
     assert_equal 3, @cruiser.health
   end
 
+  # test if the ship has been sunk
+  def test_if_ship_has_sunk
+    skip
+    refute @cruiser.sunk?
+  end
+
+  # test if the ship has been hit
+  def test_if_ship_has_been_hit_once
+    skip
+    @cruiser.hit
+    assert_equal 2, @cruiser.health
+    refute @cruiser.sunk?
+  end
+
+  # test if the ship has been hit twice
+  def test_if_ship_has_been_hit_twice
+    skip
+    @cruiser.hit
+    @cruiser.hit
+    assert_equal 1, @cruiser.health
+    refute @cruiser.sunk?
+  end
+
+  # test if the ship has been hit thrice
+  def test_if_ship_has_been_hit_thrice
+    skip
+    @cruiser.hit
+    @cruiser.hit
+    @cruiser.hit
+    assert_equal 0, @cruiser.health
+  end
+
+  # test if the ship has sunk with no health
+  def test_if_ship_is_sunk_with_no_health
+    skip
+    @cruiser.hit
+    @cruiser.hit
+    @cruiser.hit
+    assert @cruiser.sunk?
+  end
 end
