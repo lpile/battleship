@@ -23,7 +23,6 @@ class ShipTest < Minitest::Test
 
   # test if the ship has been sunk
   def test_if_ship_has_sunk
-    skip
     refute @cruiser.sunk?
   end
 
