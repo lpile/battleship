@@ -12,9 +12,6 @@ class ShipTest < Minitest::Test
   # test Ship class initialize
   def test_it_exists
     assert_instance_of Ship, @cruiser
-    assert_equal "Cruiser", @cruiser.name
-    assert_equal 3, @cruiser.length
-    assert_equal 3, @cruiser.health
   end
 
   # test if ship has attributes
