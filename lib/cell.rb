@@ -5,6 +5,7 @@ class Cell
     @coordinate = coordinate
     @ship = nil
     @empty = true
+    @fire_upon = false
   end
 
   def empty?
@@ -15,4 +16,16 @@ class Cell
     @ship = ship
     @empty = false
   end
+
+  def fired_upon?
+    @fire_upon
+  end
+
+  def fire_upon
+    @fire_upon = true
+    if @ship != nil
+      @ship.hit
+    end
+  end
+
 end
