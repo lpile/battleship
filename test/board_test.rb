@@ -37,8 +37,8 @@ class BoardTest < Minitest::Test
     refute @board.valid_placement?(@cruiser, ["A3", "A2", "A1"])
     refute @board.valid_placement?(@submarine, ["C1", "B1"])
 
-    # assert @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
-    assert @board.valid_placement?(@submarine, ["A1", "A2"])
+    assert @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
+    # assert @board.valid_placement?(@submarine, ["A1", "A2"])
   end
 
   def test_if_coordinates_are_diagonal_on_board
