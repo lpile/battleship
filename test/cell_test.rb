@@ -52,7 +52,6 @@ class CellTest < Minitest::Test
   end
 
   def test_it_displays_a_dot_if_it_has_not_been_fired_upon
-    @cell.place_ship(@ship)
     assert_equal ".", @cell.render
   end
 

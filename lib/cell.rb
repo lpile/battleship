@@ -31,14 +31,14 @@ class Cell
   def render(boolean = false)
     if boolean == true
       "S"
-    elsif @empty == false && @fire_upon == false
+    elsif @fire_upon == false
       "."
     elsif @empty == true && @fire_upon == true
       "M"
-    elsif @empty == false && @fire_upon == true
-      "H"
     elsif @ship.sunk?
       "X"
+    elsif @empty == false && @fire_upon == true
+      "H"
     end
   end
 
