@@ -28,4 +28,18 @@ class Cell
     end
   end
 
+  def render(boolean = false)
+    if boolean == true
+      "S"
+    elsif @fire_upon == false
+      "."
+    elsif @empty == true && @fire_upon == true
+      "M"
+    elsif @ship.sunk?
+      "X"
+    elsif @empty == false && @fire_upon == true
+      "H"
+    end
+  end
+
 end
