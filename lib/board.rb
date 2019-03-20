@@ -20,5 +20,23 @@ class Board
     if ship.length != coordinates.length
       false
     end
+    # check consecutive coords
+    hor_arr = []
+    @cells.each_key.each_cons(ship.length) do |cell|
+      hor_arr << cell
+    end
+    hor_arr.any? do |index|
+      index == coordinates
+    end
+    # check vertical coords
+    # vert_arr = []
+    # vert_arr = @cells.keys
+
+    end
+
+
+
+
+
+
   end
-end
