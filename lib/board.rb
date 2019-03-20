@@ -12,14 +12,7 @@ class Board
      end
 	end
 
-	# def cells
-  #   ("A".."D").each do |letter|
-  #     (1..4).each do |number|
-  #       index = "#{letter}#{number}"
-  #       @cells[index] = Cell.new(index)
-  #     end
-  #   end
-  #   @cells
-  # end
-
+	def valid_coordinate?(cell)
+    @cells.include?(cell)
+  end
 end
