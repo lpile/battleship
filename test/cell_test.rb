@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/cell'
 require './lib/ship'
-
 class CellTest < Minitest::Test
   def setup
     @cell = Cell.new("B4")
@@ -57,22 +56,35 @@ class CellTest < Minitest::Test
 
   def test_it_displays_an_m_if_it_has_been_fired_upon_with_no_ship
     @cell.fire_upon
+
     assert_equal "M", @cell.render
   end
 
   def test_it_displays_a_dot_after_placing_a_ship
     @cell.place_ship(@ship)
+
     assert_equal ".", @cell.render
   end
 
   def test_it_displays_an_s_if_it_has_a_ship_with_render_true_argument
     @cell.place_ship(@ship)
+
     assert_equal "S", @cell.render(true)
   end
 
   def test_it_displays_an_h_if_it_has_a_ship_and_is_fired_upon
     @cell.place_ship(@ship)
     @cell.fire_upon
+
     assert_equal "H", @cell.render
+  end
+
+  def test_it_displays_an_x_if_it_has_a_ship_and_is_is_sunk
+    @cell.place_ship(@ship)
+    @cell.fire_upon
+    @cell.fire_upon
+    @cell.fire_upon
+
+    assert_equal "X", @cell.render
   end
 end
