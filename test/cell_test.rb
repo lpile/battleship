@@ -24,4 +24,14 @@ class CellTest < Minitest::Test
   def test_it_is_empty_by_default
     assert @cell.empty?
   end
+
+  def test_it_can_place_a_ship
+    @cell.place_ship(@ship)
+    assert_instance_of Ship, @cell.ship
+  end
+
+  def test_it_is_not_empty_after_placing_a_ship
+    @cell.place_ship(@ship)
+    refute @cell.empty?
+  end
 end
