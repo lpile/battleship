@@ -68,7 +68,9 @@ class BoardTest < Minitest::Test
 
   def test_it_cannot_overlap_placements_of_ships
     @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.place(@submarine, ["C4", "D4"])
 
     refute @board.valid_placement?(@submarine, ["A1", "A2"])
+    refute @board.valid_placement?(@cruiser, ["A4", "B4", "C4"])
   end
 end
