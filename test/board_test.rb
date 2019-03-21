@@ -8,7 +8,8 @@ require 'pry'
 class BoardTest < Minitest::Test
   def setup
     @board = Board.new
-
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
   end
 
   def test_if_board_was_created
@@ -24,4 +25,35 @@ class BoardTest < Minitest::Test
     refute @board.valid_coordinate?("E1")
     refute @board.valid_coordinate?("A22")
   end
+
+  def test_ship_length_for_valid_placement
+    refute @board.valid_placement?(@cruiser, ["A1", "A2"])
+    refute @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
+  end
+
+  def test_if_coordinates_are_consecutive_horizontal_on_board
+    refute @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
+    refute @board.valid_placement?(@submarine, ["A1", "A3"])
+    refute @board.valid_placement?(@cruiser, ["A3", "A2", "A1"])
+    refute @board.valid_placement?(@submarine, ["B2", "B1"])
+
+    assert @board.valid_placement?(@cruiser, ["D2", "D3", "D4"])
+    assert @board.valid_placement?(@submarine, ["A1", "A2"])
+  end
+
+  def test_if_coordinates_are_diagonal_on_board
+    refute @board.valid_placement?(@cruiser, ["A1", "B2", "C3"])
+    refute @board.valid_placement?(@submarine, ["C2", "D3"])
+  end
+
+  def test_if_coordinates_are_consecutive_vertical_on_board
+    refute @board.valid_placement?(@cruiser, ["A1", "B1", "D1"])
+    refute @board.valid_placement?(@submarine, ["A1", "C1"])
+    refute @board.valid_placement?(@cruiser, ["D4", "C4", "B4"])
+    refute @board.valid_placement?(@submarine, ["C1", "B1"])
+
+    assert @board.valid_placement?(@cruiser, ["A1", "B1", "C1"])
+    assert @board.valid_placement?(@submarine, ["C1", "D1"])
+  end
+
 end
