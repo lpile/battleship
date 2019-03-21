@@ -5,7 +5,7 @@ class Cell
     @coordinate = coordinate
     @ship = nil
     @empty = true
-    @fire_upon = false
+    @fired_upon = false
   end
 
   def empty?
@@ -18,26 +18,26 @@ class Cell
   end
 
   def fired_upon?
-    @fire_upon
+    @fired_upon
   end
 
   def fire_upon
-    @fire_upon = true
+    @fired_upon = true
     if @ship != nil
       @ship.hit
     end
   end
 
   def render(boolean = false)
-    if boolean == true
+    if boolean == true && @empty == false
       "S"
-    elsif @fire_upon == false
+    elsif @fired_upon == false
       "."
-    elsif @empty == true && @fire_upon == true
+    elsif @empty == true && @fired_upon == true
       "M"
     elsif @ship.sunk?
       "X"
-    elsif @empty == false && @fire_upon == true
+    elsif @empty == false && @fired_upon == true
       "H"
     end
   end
