@@ -12,9 +12,7 @@ class Board
      end
 
 		 ###########
-		 @all_cells = []
 		 @all_cells = @cells.keys
-		 @hor_arr = []
 	end
 
 	def valid_coordinate?(cell)
