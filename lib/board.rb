@@ -19,6 +19,14 @@ class Board
     @cells.include?(cell)
 	end
 
+	def overlap_check(coordinates)
+		coordinates.each do |coordinate|
+			unless @cells[coordinate].empty?
+				return false
+			end
+		end
+	end
+
 	def valid_placement?(ship, coordinates)
 		if ship.length != coordinates.length
 			false
@@ -40,7 +48,9 @@ class Board
 			  end
 			end
 			###########################################
-			@hor_arr.any? {|valid| valid == coordinates} || @vert_arr.any? {|valid| valid == coordinates}
+			if @hor_arr.any? {|valid| valid == coordinates} || @vert_arr.any? {|valid| valid == coordinates}
+				overlap_check(coordinates)
+			end
 		elsif ship.length == 2
 			###########################################
 			# horizontal test
@@ -59,7 +69,9 @@ class Board
 			  end
 			end
 			###########################################
-			@hor_arr.any? {|valid| valid == coordinates} || @vert_arr.any? {|valid| valid == coordinates}
+			if @hor_arr.any? {|valid| valid == coordinates} || @vert_arr.any? {|valid| valid == coordinates}
+				overlap_check(coordinates)
+			end
 		else
 			raise ArgumentError.new("You messed up!")
 		end
