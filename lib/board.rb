@@ -2,78 +2,58 @@ class Board
 
 	attr_reader :cells
 
-	def initialize
+	def initialize(num)
 	   @cells = {}
-     ("A".."D").each do |letter|
-       (1..4).each do |number|
-         index = "#{letter}#{number}"
-         @cells[index] = Cell.new(index)
-       end
-     end
+     create_cells(num)
+	end
 
-		 ###########
-		 @all_cells = @cells.keys
+	def create_cells(num)
+		("A"..(64 + num).chr).each do |letter|
+			(1..num).each do |number|
+				index = "#{letter}#{number}"
+				@cells[index] = Cell.new(index)
+			end
+		end
 	end
 
 	def valid_coordinate?(cell)
     @cells.include?(cell)
 	end
 
-	def overlap_check(coordinates)
+	def valid_placement?(ship, coordinates)
+		if ship.length == coordinates.length
+			if consecutive_coordinates?(coordinates)
+				if overlap_check?(coordinates)
+					true
+				end
+			end
+		else
+			false
+		end
+	end
+
+	def consecutive_coordinates?(coordinates)
+		letters = []
+		numbers = []
+		coordinates.each do |cell|
+			letters << cell[0]
+			numbers << cell[1]
+		end
+
+		if letters.uniq.length == 1
+		  numbers.each_cons(2).all? {|x,y| y.ord == x.ord + 1}
+		elsif numbers.uniq.length == 1
+		  letters.each_cons(2).all? {|x,y| y.ord == x.ord + 1}
+		else
+		  false
+		end
+	end
+
+	def overlap_check?(coordinates)
 		coordinates.each do |coordinate|
 			unless @cells[coordinate].empty?
 				return false
 			end
-		end
-	end
-
-	def valid_placement?(ship, coordinates)
-		if ship.length != coordinates.length
-			false
-		elsif ship.length == 3
-			###########################################
-			# horizontal test
-			@hor_arr = []
-	    @all_cells.each_cons(3).map do |x,y,z|
-				if x.ord == y.ord && y.ord == z.ord
-					@hor_arr << [x, y, z]
-				end
-			end
-			###########################################
-			# vertical test
-			@vert_arr = []
-			@all_cells.each_cons(9).map do |a,b,c,d,e,f,g,h,i|
-			  if a[1].ord == e[1].ord && e[1].ord == i[1].ord
-			    @vert_arr << [a, e, i]
-			  end
-			end
-			###########################################
-			if @hor_arr.any? {|valid| valid == coordinates} || @vert_arr.any? {|valid| valid == coordinates}
-				overlap_check(coordinates)
-			end
-		elsif ship.length == 2
-			###########################################
-			# horizontal test
-			@hor_arr = []
-	    @all_cells.each_cons(2).map do |x,y|
-				if x.ord == y.ord
-					@hor_arr << [x, y]
-				end
-			end
-			###########################################
-			# vertical test
-			@vert_arr = []
-			@all_cells.each_cons(5).map do |a,b,c,d,e|
-			  if a[1].ord == e[1].ord
-			    @vert_arr << [a, e]
-			  end
-			end
-			###########################################
-			if @hor_arr.any? {|valid| valid == coordinates} || @vert_arr.any? {|valid| valid == coordinates}
-				overlap_check(coordinates)
-			end
-		else
-			raise ArgumentError.new("You messed up!")
 		end
 	end
 
@@ -82,6 +62,11 @@ class Board
 			cell = @cells[coordinate]
 			cell.place_ship(ship)
 		end
+	end
+
+	def render(boolean = false)
+		p "  1 2 3 4 \nA"
+# "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
 	end
 
 end
