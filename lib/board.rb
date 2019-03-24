@@ -65,8 +65,8 @@ class Board
 	end
 
 	def render(boolean = false)
-		p "  1 2 3 4 \nA"
-# "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+		# board_size = @cells.length
+"  1 2 3 4 \nA #{@cells["A1"].render(boolean)} #{@cells["A2"].render(boolean)} #{@cells["A3"].render(boolean)} #{@cells["A4"].render(boolean)} \nB #{@cells["B1"].render(boolean)} #{@cells["B2"].render(boolean)} #{@cells["B3"].render(boolean)} #{@cells["B4"].render(boolean)} \nC #{@cells["C1"].render(boolean)} #{@cells["C2"].render(boolean)} #{@cells["C3"].render(boolean)} #{@cells["C4"].render(boolean)} \nD #{@cells["D1"].render(boolean)} #{@cells["D2"].render(boolean)} #{@cells["D3"].render(boolean)} #{@cells["D4"].render(boolean)} \n"
 	end
 
 end
