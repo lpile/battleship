@@ -78,6 +78,12 @@ while input != "p" || input != "q"
         end
       end
     end
+    if submarine.health == 0 && cruiser.health == 0
+      puts "I won!"
+    else
+      puts "You won!"
+    end
+
 
   elsif input == "q"
     puts "Goodbye."
