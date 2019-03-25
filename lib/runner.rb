@@ -50,6 +50,7 @@ while input != "p" || input != "q"
     end
     puts player_board.render(true)
     ### Begin the Game
+    player_guesses = []
     until submarine.health == 0 && cruiser.health == 0 || computer_submarine.health == 0 && computer_cruiser.health == 0
       puts "============COMPUTER BOARD============"
       puts computer_board.render(true)
@@ -58,14 +59,17 @@ while input != "p" || input != "q"
       loop do
         puts "Enter the coordinate for your shot:"
         shot = gets.chomp.upcase
-        if computer_board.valid_coordinate?(shot)
+        if player_guesses.include?(shot)
+          puts "You have already fired on that cell, please try again."
+        elsif computer_board.valid_coordinate?(shot)
           computer_board.cells[shot].fire_upon
+          player_guesses << shot
+          computer_player.computer_guess(player_board)
           break
         else
           puts "Those are invalid coordinates, please try again."
         end
       end
-      computer_player.computer_guess(player_board)
     end
 
   elsif input == "q"
