@@ -28,7 +28,6 @@ while input != "p" || input != "q"
       puts "Where do you want to put your submarine?"
       print "Two coordinates:"
       sub_placement = gets.chomp.upcase
-      # require 'pry'; binding.pry
       if player_board.valid_placement?(submarine, sub_placement.split(" "))
         player_board.place(submarine, sub_placement.split(" "))
         break
@@ -64,6 +63,14 @@ while input != "p" || input != "q"
         elsif computer_board.valid_coordinate?(shot)
           computer_board.cells[shot].fire_upon
           player_guesses << shot
+          if computer_board.cells[shot].render == "M"
+            response = "was a miss."
+          elsif computer_board.cells[shot].render == "H"
+            response = "was a hit."
+          else
+            response = "sunk a ship!"
+          end
+          puts "Your shot on #{shot} #{response}"
           computer_player.computer_guess(player_board)
           break
         else

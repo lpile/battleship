@@ -28,9 +28,16 @@ class Computer
 
   def computer_guess(player_board)
       shot = @possible_guesses.sample
-      # require 'pry'; binding.pry
       player_board.cells[shot].fire_upon
       @possible_guesses.delete(shot)
+      if player_board.cells[shot].render == "M"
+        response = "was a miss."
+      elsif player_board.cells[shot].render == "H"
+        response = "was a hit."
+      else
+        response = "sunk a ship!"
+      end
+      puts "My shot on #{shot} #{response}"
   end
 
 end
