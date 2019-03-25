@@ -87,6 +87,6 @@ class BoardTest < Minitest::Test
   def test_it_can_render_a_six_wide_board
     board = Board.new(6)
 
-    assert_equal "  1 2 3 4 5 6 \nA . . . . . . \nB . . . . . . \nC . . . . . . \nD . . . . . . \n", board.render(true)
+    assert_equal "  1 2 3 4 5 6 \nA . . . . . . \nB . . . . . . \nC . . . . . . \nD . . . . . . \nE . . . . . . \nF . . . . . . \n", board.render(true)
   end
 end
