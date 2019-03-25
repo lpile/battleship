@@ -49,6 +49,23 @@ while input != "p" || input != "q"
       end
     end
     puts player_board.render(true)
+    ### Begin the Game
+    until submarine.health == 0 && cruiser.health == 0 || computer_submarine.health == 0 && computer_cruiser.health == 0
+      puts "============COMPUTER BOARD============"
+      puts computer_board.render
+      puts "============PLAYER BOARD============"
+      puts player_board.render(true)
+      loop do
+        puts "Enter the coordinate for your shot:"
+        shot = gets.chomp.upcase
+        if computer_board.valid_coordinate?(shot)
+          computer_board.cells[shot].fire_upon
+          break
+        else
+          puts "Those are invalid coordinates, please try again."
+        end
+      end
+    end
 
   elsif input == "q"
     puts "Goodbye."
