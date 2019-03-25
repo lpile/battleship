@@ -5,6 +5,7 @@ class Board
 	def initialize(num)
 	   @cells = {}
      create_cells(num)
+		 @size = num
 	end
 
 	def create_cells(num)
@@ -65,8 +66,19 @@ class Board
 	end
 
 	def render(boolean = false)
-		# board_size = @cells.length
-"  1 2 3 4 \nA #{@cells["A1"].render(boolean)} #{@cells["A2"].render(boolean)} #{@cells["A3"].render(boolean)} #{@cells["A4"].render(boolean)} \nB #{@cells["B1"].render(boolean)} #{@cells["B2"].render(boolean)} #{@cells["B3"].render(boolean)} #{@cells["B4"].render(boolean)} \nC #{@cells["C1"].render(boolean)} #{@cells["C2"].render(boolean)} #{@cells["C3"].render(boolean)} #{@cells["C4"].render(boolean)} \nD #{@cells["D1"].render(boolean)} #{@cells["D2"].render(boolean)} #{@cells["D3"].render(boolean)} #{@cells["D4"].render(boolean)} \n"
+		display = "  "
+		@size.times do |width|
+			display += "#{width + 1} "
+		end
+		display += "\n"
+		@size.times do |width|
+			display += "#{(65 + width).chr} "
+			@size.times do |cell|
+				display += "#{@cells["#{(65 + width).chr}#{cell + 1}"].render(boolean)} "
+			end
+			display += "\n"
+		end
+		display
 	end
 
 end
