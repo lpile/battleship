@@ -5,6 +5,7 @@ class Board
 	def initialize(num)
 	   @cells = {}
      create_cells(num)
+		 @size = num
 	end
 
 	def create_cells(num)
@@ -65,8 +66,19 @@ class Board
 	end
 
 	def render(boolean = false)
-		p "  1 2 3 4 \nA"
-# "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+		display = "  "
+		@size.times do |width|
+			display += "#{width + 1} "
+		end
+		display += "\n"
+		@size.times do |width|
+			display += "#{(65 + width).chr} "
+			@size.times do |cell|
+				display += "#{@cells["#{(65 + width).chr}#{cell + 1}"].render(boolean)} "
+			end
+			display += "\n"
+		end
+		display
 	end
 
 end
