@@ -52,7 +52,7 @@ while input != "p" || input != "q"
     ### Begin the Game
     until submarine.health == 0 && cruiser.health == 0 || computer_submarine.health == 0 && computer_cruiser.health == 0
       puts "============COMPUTER BOARD============"
-      puts computer_board.render
+      puts computer_board.render(true)
       puts "============PLAYER BOARD============"
       puts player_board.render(true)
       loop do
@@ -65,6 +65,7 @@ while input != "p" || input != "q"
           puts "Those are invalid coordinates, please try again."
         end
       end
+      computer_player.computer_guess(player_board)
     end
 
   elsif input == "q"
