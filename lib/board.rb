@@ -34,12 +34,8 @@ class Board
 	end
 
 	def consecutive_coordinates?(coordinates)
-		letters = []
-		numbers = []
-		coordinates.each do |cell|
-			letters << cell[0]
-			numbers << cell[1]
-		end
+		letters = coordinates.map {|i| i[0]}
+		numbers = coordinates.map {|i| i[1]}
 
 		if letters.uniq.length == 1
 		  numbers.each_cons(2).all? {|x,y| y.ord == x.ord + 1}
