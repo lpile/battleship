@@ -83,8 +83,6 @@ while input != "p" || input != "q"
     else
       puts "You won!"
     end
-
-
   elsif input == "q"
     puts "Goodbye."
     exit

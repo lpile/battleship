@@ -64,13 +64,17 @@ class Board
 	def render(boolean = false)
 		display = "  "
 		@size.times do |width|
-			display += "#{width + 1} "
+			if width < 8
+				display += " #{width + 1} "
+			else
+				display += " #{width + 1}"
+			end
 		end
 		display += "\n"
 		@size.times do |width|
 			display += "#{(65 + width).chr} "
 			@size.times do |cell|
-				display += "#{@cells["#{(65 + width).chr}#{cell + 1}"].render(boolean)} "
+				display += " #{@cells["#{(65 + width).chr}#{cell + 1}"].render(boolean)} "
 			end
 			display += "\n"
 		end
