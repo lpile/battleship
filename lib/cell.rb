@@ -29,7 +29,7 @@ class Cell
   end
 
   def render(boolean = false)
-    if boolean == true && @empty == false
+    if boolean == true && @empty == false && @fired_upon == false
       "S"
     elsif @fired_upon == false
       "."
