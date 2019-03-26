@@ -52,7 +52,7 @@ while input != "p" || input != "q"
     player_guesses = []
     until submarine.health == 0 && cruiser.health == 0 || computer_submarine.health == 0 && computer_cruiser.health == 0
       puts "============COMPUTER BOARD============"
-      puts computer_board.render(true)
+      puts computer_board.render
       puts "============PLAYER BOARD============"
       puts player_board.render(true)
       loop do
