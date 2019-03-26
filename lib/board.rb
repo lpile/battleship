@@ -63,6 +63,13 @@ class Board
 
 	def render(boolean = false)
 		display = "  "
+		display = header(display)
+		display += "\n"
+		display = body(display, boolean)
+		display
+	end
+
+	def header(display)
 		@size.times do |width|
 			if width < 8
 				display += " #{width + 1} "
@@ -70,7 +77,10 @@ class Board
 				display += " #{width + 1}"
 			end
 		end
-		display += "\n"
+		display
+	end
+
+	def body(display, boolean)
 		@size.times do |width|
 			display += "#{(65 + width).chr} "
 			@size.times do |cell|
