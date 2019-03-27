@@ -2,8 +2,6 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/computer'
-submarine = Ship.new("Submarine", 2)
-cruiser = Ship.new("Cruiser", 3)
 
 puts "Welcome to BATTLESHIP"
 puts "Enter p to play. Enter q to quit."
@@ -13,6 +11,8 @@ while input != "p" || input != "q"
     puts "What size do you want your board to be?"
     board_size = gets.chomp.to_i
     ## Initialize Player and Computer Boards and variables
+    submarine = Ship.new("Submarine", 2)
+    cruiser = Ship.new("Cruiser", 3)
     player_board = Board.new(board_size)
     computer_player = Computer.new(board_size)
     computer_board = computer_player.board
